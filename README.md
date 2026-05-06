@@ -39,6 +39,8 @@ python main.py
 
 # Your own text
 python main.py --text "The government unveiled bold new reforms today..."
+# Short form
+python main.py -t "The government unveiled bold new reforms today..."
 
 # From a file
 python main.py --file article.txt
@@ -66,8 +68,6 @@ print(report)
 ══════════════════════════════════════════
 
   Sentiment Asymmetry   : 0.4714
-  Political Balance     : 52.9 / 100
-  Bias Meter            : [████░░░░░░]
 
   Interpretation        : Slight bias detected
 
@@ -75,7 +75,7 @@ print(report)
   BIAS EXPLANATION
 ──────────────────────────────────────────
 
-  • Positive framing → Labour Party, Keir Starmer
+  • Positive framing → Labour Party, Keir Starmer, Candidate A, Org X (+2 more)
   • Negative framing → Conservative Party, Rishi Sunak
 
   ⚠  Extreme sentiment asymmetry detected between entities.
@@ -93,6 +93,11 @@ print(report)
 | Duplicate entities ("Party A's") | Possessive stripping + lowercase dedup         |
 | Asymmetry always 0             | Std-dev of bias scores (never 0 when they differ)|
 | Verbose output                 | Only final report is printed                    |
+
+Notes:
+- Interpretation is now driven by *sentiment asymmetry* (std-dev of entity bias scores) with thresholds: <0.30 = balanced, <0.50 = slight bias, <0.75 = moderate bias, >=0.75 = strong bias.
+- The ARTICLE BIAS ANALYSIS block now shows only Sentiment Asymmetry and Interpretation; the bias meter and balance score were moved out of the top summary.
+- Bias explanation lists are limited to the top 4 entities per framing and will display a "+N more" suffix when truncated.
 
 ---
 
