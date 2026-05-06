@@ -1,0 +1,7 @@
+# political_bias_nlp – Python dependencies
+# Install with: pip install -r requirements.txt
+# Then run    : python -m spacy download en_core_web_sm
+
+spacy>=3.7,<4.0
+transformers>=4.38.0
+torch>=2.0.0          # or tensorflow>=2.12.0 if you prefer TF backend
